@@ -1,0 +1,7 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ภาพประจำตัวนักศึกษา (ตัวอย่าง)">
+  <rect width="400" height="400" fill="#EEF1F4"/>
+  <circle cx="200" cy="160" r="72" fill="#2F6F5E"/>
+  <path d="M60 380c0-88 63-140 140-140s140 52 140 140" fill="#2F6F5E" opacity="0.85"/>
+  <rect x="0" y="0" width="400" height="400" fill="none" stroke="#E1E5EA" stroke-width="2"/>
+  <text x="200" y="370" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#6B7480">แทนที่ด้วยรูปนักศึกษาจริง</text>
+</svg>

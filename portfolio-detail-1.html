@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HW2: Address Book (WinForms) | Portfolio</title>
+<meta name="description" content="รายละเอียดการบ้าน HW2 โปรแกรม C# WinForms สมุดรายชื่อ Address Book">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html"><em>Tigger</em></a>
+    <nav class="nav" aria-label="เมนูหลัก">
+      <a href="index.html">Home</a>
+      <a href="about.aspx">About</a>
+      <a href="cv.html">CV</a>
+      <a href="portfolio.html" aria-current="page">Portfolio</a>
+      <a href="contact.aspx">Contact</a>
+      <a href="guestbook.aspx">Guestbook</a>
+    </nav>
+  </div>
+</header>
+<div class="course-bar"><div class="container">310-2203 Back-End Software Development</div></div>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <a class="back-link" href="portfolio.html">&larr; กลับไปหน้า Portfolio</a>
+
+      <span class="eyebrow">Table: hw02_address_book</span>
+      <h1>HW2: Address Book — C# WinForms</h1>
+
+      <div class="detail-meta">
+        <span class="tag">C# WinForms</span>
+        <span class="tag">Visual Studio</span>
+        <span class="tag">CSV Storage</span>
+      </div>
+
+      <div class="detail-body">
+        <p>โปรแกรมสมุดรายชื่อ (Address Book) ที่พัฒนาด้วย C# WinForms รับข้อมูลผู้ติดต่อ เช่น คำนำหน้าชื่อ ชื่อ-นามสกุล เพศ วันเกิด และข้อมูลติดต่ออื่น ๆ แล้วบันทึกลงไฟล์ <code>contacts.csv</code></p>
+
+        <img src="images/hw02-screenshot-1.png" alt="หน้าจอโปรแกรม Address Book ขณะกรอกข้อมูลผู้ติดต่อครบถ้วน">
+
+        <h2>ฟีเจอร์หลัก</h2>
+        <ul>
+          <li>เลือกคำนำหน้าชื่อ (นาย/นาง/นางสาว/เด็กชาย/เด็กหญิง) แล้วเติมเพศให้อัตโนมัติ</li>
+          <li>คำนวณอายุอัตโนมัติจากวันเดือนปีเกิดที่เลือก</li>
+          <li>บันทึกและอ่านข้อมูลผู้ติดต่อจากไฟล์ CSV</li>
+          <li>ตรวจสอบความถูกต้องของข้อมูล (Validation) ก่อนบันทึก พร้อมแจ้งเตือนช่องที่ยังไม่ได้กรอก</li>
+        </ul>
+
+        <img src="images/hw02-screenshot-2.png" alt="หน้าจอโปรแกรม Address Book แสดงการแจ้งเตือนเมื่อข้อมูลไม่ครบถ้วน">
+
+        <h2>สิ่งที่ได้เรียนรู้</h2>
+        <p>การออกแบบฟอร์มให้ใช้งานง่ายด้วย ComboBox และ DateTimePicker การจัดการ Event เช่น SelectedIndexChanged เพื่อเติมค่าที่สัมพันธ์กันโดยอัตโนมัติ และการเขียน Validation ที่แจ้งผู้ใช้ได้ชัดเจนด้วย ErrorProvider</p>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="files/hw02-windowsforms.zip" download>ดาวน์โหลดซอร์สโค้ด (.zip)</a>
+          <a class="btn btn-ghost" href="portfolio.html">ดูผลงานอื่น ๆ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <br>6810301012 &middot; Deployed on GitHub Pages
+  </div>
+</footer>
+
+<script src="js/download.js"></script>
+</body>
+</html>

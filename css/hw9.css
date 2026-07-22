@@ -1,0 +1,160 @@
+/* ============================================================
+   hw9.css — สไตล์เพิ่มเติมสำหรับ Guestbook / Contact / About
+   ต่อยอดจาก css/style.css (ใช้ตัวแปรสีชุดเดิม: --primary teal, --accent rust)
+   ============================================================ */
+
+.server-info,
+.server-info-line,
+.server-greeting {
+    background: var(--surface, #fff);
+    border: 1px solid var(--border, #e1e5ea);
+    border-radius: var(--radius, 10px);
+    padding: 12px 16px;
+    margin: 16px 0 24px;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.92rem;
+    color: var(--text, #1b2430);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+}
+
+.page-lead {
+    color: #55606b;
+    margin-bottom: 8px;
+}
+
+/* ---- กล่องแจ้งเตือนสถานะ (ใช้ทั้ง Guestbook และ Contact) ---- */
+.gb-alert {
+    padding: 12px 16px;
+    border-radius: var(--radius, 10px);
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.gb-alert--success {
+    background: #e5f3ee;
+    border: 1px solid var(--primary, #2f6f5e);
+    color: var(--primary, #2f6f5e);
+}
+
+.gb-alert--error {
+    background: #fbeae3;
+    border: 1px solid var(--accent, #b65c34);
+    color: var(--accent, #b65c34);
+}
+
+/* ---- ฟอร์ม Guestbook ---- */
+.gb-form-section,
+.gb-list-section {
+    margin-bottom: 32px;
+}
+
+.gb-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 560px;
+}
+
+.gb-form .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.gb-form label,
+.form-grid label {
+    font-weight: 600;
+    font-family: var(--font-display, inherit);
+}
+
+.gb-form input,
+.gb-form textarea,
+.form-grid input,
+.form-grid textarea {
+    padding: 10px 12px;
+    border: 1px solid var(--border, #e1e5ea);
+    border-radius: 8px;
+    font-family: var(--font-body, inherit);
+    font-size: 1rem;
+}
+
+.gb-form input:focus,
+.gb-form textarea:focus,
+.form-grid input:focus,
+.form-grid textarea:focus {
+    outline: none;
+    border-color: var(--primary, #2f6f5e);
+    box-shadow: 0 0 0 3px rgba(47, 111, 94, 0.15);
+}
+
+/* ---- รายการข้อความ Guestbook ---- */
+.gb-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.gb-entry {
+    background: var(--surface, #fff);
+    border: 1px solid var(--border, #e1e5ea);
+    border-radius: var(--radius, 10px);
+    padding: 14px 16px;
+    box-shadow: var(--shadow-card, 0 1px 2px rgba(27,36,48,0.04));
+}
+
+.gb-entry__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.gb-entry__name {
+    font-weight: 600;
+    color: var(--primary, #2f6f5e);
+}
+
+.gb-entry__time {
+    font-size: 0.82rem;
+    color: #8a94a0;
+    font-family: var(--font-mono, monospace);
+}
+
+.gb-entry__message {
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ---- กล่องข้อมูลเพิ่มเติมในหน้า About (show/hide ด้วย JS) ---- */
+.about-extra {
+    margin-top: 18px;
+    padding: 16px;
+    border-left: 3px solid var(--primary, #2f6f5e);
+    background: #f9faf9;
+    border-radius: 0 8px 8px 0;
+}
+
+.about-extra h3 {
+    margin-top: 0;
+    color: var(--primary, #2f6f5e);
+}
+
+/* ---- active nav link ---- */
+.nav-links a.active {
+    color: var(--primary, #2f6f5e);
+    font-weight: 700;
+    border-bottom: 2px solid var(--primary, #2f6f5e);
+}
+
+/* ---- fallback hint style เมื่อใช้ .hint นอกบริบท .field ---- */
+.server-info-line .hint{
+    display: block;
+    font-size: .78rem;
+    color: var(--text-muted, #6B7480);
+    margin-top: 4px;
+    font-family: var(--font-body, inherit);
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio | HW8</title>
+<meta name="description" content="รวมผลงานการบ้านตลอดภาคการศึกษา พร้อมปุ่มดูรายละเอียดและดาวน์โหลด">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html"><em>Tigger</em></a>
+    <nav class="nav" aria-label="เมนูหลัก">
+      <a href="index.html">Home</a>
+      <a href="about.aspx">About</a>
+      <a href="cv.html">CV</a>
+      <a href="portfolio.html" aria-current="page">Portfolio</a>
+      <a href="contact.aspx">Contact</a>
+      <a href="guestbook.aspx">Guestbook</a>
+    </nav>
+  </div>
+</header>
+<div class="course-bar"><div class="container">310-2203 Back-End Software Development</div></div>
+
+<main>
+  <section class="hero" style="padding-bottom:40px;">
+    <div class="container">
+      <span class="eyebrow">portfolio</span>
+      <h1>ผลงานการบ้าน</h1>
+      <p class="lead">รวมการบ้านและโครงงานระหว่างเรียน แต่ละรายการมีคำอธิบาย ปุ่มดูรายละเอียด และปุ่มดาวน์โหลดไฟล์ผลงานจริง </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="field" style="max-width:360px; margin-bottom:24px;">
+        <label for="portfolioSearch">ค้นหาผลงาน</label>
+        <input type="text" id="portfolioSearch"
+               placeholder="พิมพ์คำค้นหา เช่น C#, UML, IIS..."
+               onkeyup="filterPortfolio('portfolioSearch', '.entity-card')">
+      </div>
+      <div class="entity-grid">
+
+        <div class="entity-card">
+          <div class="entity-card__head">
+            <span class="entity-card__table">hw02_address_book</span>
+            <span class="pill">C#</span>
+          </div>
+          <div class="entity-card__body">
+            <h3>HW2: Address Book (WinForms)</h3>
+            <p>โปรแกรม C# WinForms สำหรับบันทึกสมุดรายชื่อ เลือกคำนำหน้า/เพศอัตโนมัติ คำนวณอายุจากวันเกิด บันทึกข้อมูลลง contacts.csv พร้อมระบบตรวจสอบความถูกต้องของข้อมูล</p>
+            <div class="tag-row"><span class="tag">WinForms</span><span class="tag">CSV</span></div>
+            <div class="card-actions">
+              <a class="btn btn-primary btn-sm" href="portfolio-detail-1.html">View</a>
+              <a class="btn btn-ghost btn-sm" href="files/hw02-windowsforms.zip" download>Download</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="entity-card">
+          <div class="entity-card__head">
+            <span class="entity-card__table">hw03_sdlc_srs</span>
+            <span class="pill">SE Concepts</span>
+          </div>
+          <div class="entity-card__body">
+            <h3>HW3: สรุป SDLC &amp; SRS</h3>
+            <p>สรุปแนวคิด Software Development Life Cycle (Waterfall, Agile) และ Software Requirements Specification พร้อมตัวอย่าง Functional/Non-Functional Requirements</p>
+            <div class="tag-row"><span class="tag">SDLC</span><span class="tag">SRS</span></div>
+            <div class="card-actions">
+              <a class="btn btn-primary btn-sm" href="files/hw03-sdlc-srs.md" target="_blank" rel="noopener">View</a>
+              <a class="btn btn-ghost btn-sm" href="files/hw03-sdlc-srs.md" download>Download</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="entity-card">
+          <div class="entity-card__head">
+            <span class="entity-card__table">hw04_test_report</span>
+            <span class="pill">Testing</span>
+          </div>
+          <div class="entity-card__body">
+            <h3>HW4: Test Report — Text/CSV Viewer</h3>
+            <p>รายงานผลการทดสอบ (Test Plan / Test Environment / Test Case) สำหรับโปรแกรม Text/CSV Viewer ตามรูปแบบ Test Report มาตรฐาน พร้อมลิงก์ซอร์สโค้ดบน GitHub</p>
+            <div class="tag-row"><span class="tag">Test Plan</span><span class="tag">Excel</span></div>
+            <div class="card-actions">
+              <a class="btn btn-primary btn-sm" href="https://github.com/Tigger-TH/HW4-FileProcessing" target="_blank" rel="noopener">View on GitHub</a>
+              <a class="btn btn-ghost btn-sm" href="files/hw04-testing.xlsx" download>Download</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="entity-card">
+          <div class="entity-card__head">
+            <span class="entity-card__table">hw05_urs_golden_place</span>
+            <span class="pill">URS</span>
+          </div>
+          <div class="entity-card__body">
+            <h3>HW5: URS — ระบบ POS ร้าน Golden Place</h3>
+            <p>User Requirement Specification สำหรับระบบขายหน้าร้าน โดยเก็บข้อมูลจากการสังเกตพฤติกรรมลูกค้าเท่านั้น ครอบคลุม System Overview, User Roles, Functional/Non-Functional Requirements และ Observations &amp; Issues</p>
+            <div class="tag-row"><span class="tag">Requirement Analysis</span><span class="tag">POS</span></div>
+            <div class="card-actions">
+              <a class="btn btn-primary btn-sm" href="files/hw05-urs-goldenplace.pdf" target="_blank" rel="noopener">View</a>
+              <a class="btn btn-ghost btn-sm" href="files/hw05-urs-goldenplace.pdf" download>Download</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="entity-card">
+          <div class="entity-card__head">
+            <span class="entity-card__table">hw06_uml_diagrams</span>
+            <span class="pill">UML</span>
+          </div>
+          <div class="entity-card__body">
+            <h3>HW6: UML Diagrams — Ticket Booking System</h3>
+            <p>ออกแบบแผนภาพ UML 6 รูปแบบ (Use Case, Class, Sequence, Activity, State Machine, Component) สำหรับระบบขายตั๋วภาพยนตร์/คอนเสิร์ต</p>
+            <div class="tag-row"><span class="tag">UML</span><span class="tag">System Design</span></div>
+            <div class="card-actions">
+              <a class="btn btn-primary btn-sm" href="portfolio-detail-2.html">View</a>
+              <a class="btn btn-ghost btn-sm" href="files/hw06-uml-diagrams.pdf" download>Download</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="entity-card">
+          <div class="entity-card__head">
+            <span class="entity-card__table">hw07_iis_setup</span>
+            <span class="pill">IIS</span>
+          </div>
+          <div class="entity-card__body">
+            <h3>HW7: ตั้งค่า IIS + เว็บแนะนำตัวเบื้องต้น</h3>
+            <p>ขั้นตอนการตั้งค่าเว็บเซิร์ฟเวอร์ IIS บนพอร์ต 8080 พร้อมพัฒนาเว็บหน้าแนะนำตัวด้วย HTML + CSS ซึ่งเป็นจุดเริ่มต้นของเว็บไซต์ส่วนตัวชิ้นนี้</p>
+            <div class="tag-row"><span class="tag">IIS</span><span class="tag">HTML/CSS</span></div>
+            <div class="card-actions">
+              <a class="btn btn-primary btn-sm" href="portfolio-detail-3.html">View</a>
+              <a class="btn btn-ghost btn-sm" href="files/hw07-iis-setup.pdf" download>Download</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="entity-card">
+          <div class="entity-card__head">
+            <span class="entity-card__table">hw08_html_css_cloud</span>
+            <span class="pill">this site</span>
+          </div>
+          <div class="entity-card__body">
+            <h3>HW8: Personal Homepage (HTML + CSS + Cloud)</h3>
+            <p>เว็บไซต์ส่วนตัวที่คุณกำลังดูอยู่นี้เอง พัฒนาแบบ Static HTML5 + CSS หลายหน้า ต่อยอดจากเว็บหน้าเดียวใน HW7 ให้กลายเป็นเว็บไซต์เต็มรูปแบบ ออกแบบให้ Deploy ได้ทั้งบน IIS และ Cloud</p>
+            <div class="tag-row"><span class="tag">HTML5</span><span class="tag">CSS</span><span class="tag">Cloud</span></div>
+            <div class="card-actions">
+              <a class="btn btn-primary btn-sm" href="about.aspx">View</a>
+              <span class="btn btn-ghost btn-sm" style="opacity:.5; cursor:default;">คือเว็บไซต์นี้เอง</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="muted" style="margin-top:32px;">
+        <strong>หมายเหตุสำหรับผู้ดูแลเว็บไซต์:</strong> เมื่อมีการบ้านใหม่ ให้คัดลอกโครงสร้าง <code>.entity-card</code> หนึ่งชุดมาวางต่อท้าย แล้วแก้ไขชื่อ คำอธิบาย และลิงก์ปุ่ม View/Download ให้ตรงกับผลงานใหม่
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <br>6810301012 &middot; Deployed on GitHub Pages
+  </div>
+</footer>
+
+<script src="js/download.js"></script>
+<script src="js/hw9.js"></script>
+</body>
+</html>

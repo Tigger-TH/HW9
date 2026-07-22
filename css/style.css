@@ -1,0 +1,422 @@
+/* =========================================================
+   Personal Homepage — HW8
+   Design concept: "Entity Card" system — portfolio & CV items
+   are styled like database table/entity cards (a nod to the
+   ER-Modeling coursework this site's owner is studying).
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@500;600;700&family=Sarabun:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root{
+  /* --- Color tokens --- */
+  --bg:            #F5F6F8;
+  --surface:       #FFFFFF;
+  --surface-alt:   #EEF1F4;
+  --border:        #E1E5EA;
+  --text:          #1B2430;
+  --text-muted:    #6B7480;
+  --primary:       #2F6F5E;   /* deep teal — "primary key" */
+  --primary-dark:  #234F43;
+  --accent:        #B65C34;   /* warm rust — "foreign key" */
+  --accent-soft:   #F3E7DE;
+  --focus:         #2F6F5E;
+
+  /* --- Type tokens --- */
+  --font-display: 'Prompt', 'Sarabun', sans-serif;
+  --font-body:    'Sarabun', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow-card: 0 1px 2px rgba(27,36,48,0.04), 0 4px 14px rgba(27,36,48,0.05);
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  margin:0;
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 16px;
+}
+
+img{ max-width:100%; display:block; }
+
+a{ color: var(--primary); text-decoration:none; }
+a:hover{ color: var(--primary-dark); }
+
+h1,h2,h3,h4{
+  font-family: var(--font-display);
+  color: var(--text);
+  line-height: 1.25;
+  margin: 0 0 .5em;
+}
+
+h1{ font-size: clamp(1.9rem, 3vw, 2.6rem); font-weight:700; }
+h2{ font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight:600; }
+h3{ font-size: 1.15rem; font-weight:600; }
+
+p{ margin:0 0 1em; color: var(--text); }
+
+.container{
+  width:100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Visible focus ring everywhere (accessibility) */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------------- Course bar ---------------- */
+.course-bar{
+  background: var(--surface-alt);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--text-muted);
+  letter-spacing: .02em;
+}
+.course-bar .container{ padding-top:8px; padding-bottom:8px; }
+
+/* ---------------- Header / Nav ---------------- */
+.site-header{
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top:0;
+  z-index: 50;
+}
+.nav-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 16px;
+  padding: 16px 24px;
+}
+.brand{
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--text);
+  letter-spacing: .02em;
+}
+.brand em{
+  font-style: normal;
+  color: var(--primary);
+}
+.brand::before{
+  content: "";
+  display:inline-block;
+  width:8px; height:8px;
+  border-radius: 2px;
+  background: var(--accent);
+  margin-inline-end: 8px;
+  vertical-align: middle;
+}
+.nav{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.nav a{
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: .95rem;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  transition: background .15s ease, color .15s ease;
+}
+.nav a:hover{ background: var(--surface-alt); color: var(--text); }
+.nav a[aria-current="page"]{
+  color: var(--primary);
+  background: var(--accent-soft);
+}
+
+/* ---------------- Hero ---------------- */
+.hero{
+  padding: 72px 0 56px;
+  border-bottom: 1px solid var(--border);
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 48px;
+  align-items:center;
+}
+@media (max-width: 780px){
+  .hero-grid{ grid-template-columns: 1fr; }
+}
+.eyebrow{
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 12px;
+  display:block;
+}
+.hero p.lead{
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 46ch;
+}
+.hero-photo{
+  border-radius: var(--radius);
+  overflow:hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.btn-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 24px; }
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 11px 20px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: .95rem;
+  border: 1px solid transparent;
+  cursor:pointer;
+  font-family: var(--font-body);
+}
+.btn-primary{ background: var(--primary); color:#fff; }
+.btn-primary:hover{ background: var(--primary-dark); color:#fff; }
+.btn-ghost{ background: transparent; border-color: var(--border); color: var(--text); }
+.btn-ghost:hover{ background: var(--surface-alt); color: var(--text); }
+.btn-sm{ padding: 7px 14px; font-size: .85rem; }
+
+/* ---------------- Section shell ---------------- */
+.section{ padding: 56px 0; }
+.section-head{ margin-bottom: 32px; max-width: 60ch; }
+.section-head .eyebrow{ margin-bottom: 8px; }
+.section-alt{ background: var(--surface); }
+
+/* ---------------- Entity cards (signature element) ----------------
+   Styled like a database table: a header bar that reads like a
+   table name, and rows that read like attributes.
+-------------------------------------------------------------------*/
+.entity-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.entity-card{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: var(--shadow-card);
+  display:flex;
+  flex-direction:column;
+}
+.entity-card__head{
+  background: var(--primary);
+  color:#fff;
+  padding: 12px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.entity-card__table{
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  letter-spacing: .03em;
+  opacity: .85;
+  text-transform: uppercase;
+}
+.entity-card__body{
+  padding: 18px 16px 20px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+.entity-card__body h3{ margin-bottom:6px; }
+.entity-card__body p{
+  color: var(--text-muted);
+  font-size: .93rem;
+  flex:1;
+}
+.pill{
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.18);
+  color:#fff;
+  white-space:nowrap;
+}
+.tag-row{ display:flex; gap:6px; flex-wrap:wrap; margin: 10px 0 16px; }
+.tag{
+  font-size: .74rem;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+.card-actions{ display:flex; gap:8px; margin-top:auto; }
+
+/* ---------------- CV page ---------------- */
+.cv-header{
+  display:flex;
+  gap:24px;
+  align-items:center;
+  flex-wrap:wrap;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+.cv-photo{
+  width: 120px; height:120px;
+  border-radius: 50%;
+  overflow:hidden;
+  border: 3px solid var(--surface);
+  outline: 1px solid var(--border);
+  flex-shrink:0;
+}
+.cv-photo img{ width:100%; height:100%; object-fit:cover; }
+.cv-contact-list{ list-style:none; padding:0; margin: 8px 0 0; font-size:.92rem; color: var(--text-muted); }
+.cv-contact-list li{ margin-bottom:4px; }
+
+.timeline{ border-inline-start: 2px solid var(--border); padding-inline-start: 24px; }
+.timeline-item{ position:relative; margin-bottom: 28px; }
+.timeline-item::before{
+  content:"";
+  position:absolute;
+  left: -30px;
+  top: 4px;
+  width:10px; height:10px;
+  background: var(--accent);
+  border-radius:50%;
+}
+.timeline-item .meta{
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--text-muted);
+}
+
+/* ---------------- Skill chips ---------------- */
+.skill-group{ margin-bottom: 22px; }
+.skill-group h4{
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+.skill-chip-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px;
+}
+.skill-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 9px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: .88rem;
+  font-weight: 500;
+  color: var(--text);
+  box-shadow: var(--shadow-card);
+}
+.skill-chip::before{
+  content:"";
+  width:7px; height:7px;
+  border-radius:50%;
+  background: var(--primary);
+  flex-shrink:0;
+}
+.skill-chip.accent::before{ background: var(--accent); }
+
+/* ---------------- Contact form ---------------- */
+.form-grid{
+  display:grid;
+  gap: 18px;
+  max-width: 560px;
+}
+.field label{
+  display:block;
+  font-size: .88rem;
+  font-weight:600;
+  margin-bottom: 6px;
+}
+.field input, .field textarea{
+  width:100%;
+  padding: 11px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: .95rem;
+  background: var(--surface);
+  color: var(--text);
+}
+.field textarea{ resize: vertical; min-height: 130px; }
+.field .hint{ font-size:.78rem; color:var(--text-muted); margin-top:4px; }
+.contact-info{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.contact-info .item{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.contact-info .item strong{ display:block; font-size:.85rem; color: var(--text-muted); font-weight:600; }
+
+/* ---------------- Footer ---------------- */
+.site-footer{
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  text-align:center;
+  color: var(--text-muted);
+  font-size: .85rem;
+  background: var(--surface);
+}
+.site-footer .eyebrow{ display:block; margin-bottom:4px; }
+
+/* ---------------- Detail pages ---------------- */
+.detail-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.detail-body img{
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin: 20px 0;
+}
+.back-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:.9rem;
+  margin-bottom: 20px;
+  font-weight:600;
+}
+
+/* ---------------- Utility ---------------- */
+.grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+@media (max-width: 780px){ .grid-2{ grid-template-columns: 1fr; } }
+.muted{ color: var(--text-muted); }

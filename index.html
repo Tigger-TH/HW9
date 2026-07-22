@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homepage | HW8</title>
+<meta name="description" content="เว็บไซต์ส่วนตัวของนักศึกษา แสดงประวัติ ผลงานการบ้าน และช่องทางติดต่อ">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html"><em>Tigger</em></a>
+    <nav class="nav" aria-label="เมนูหลัก">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="about.aspx">About</a>
+      <a href="cv.html">CV</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.aspx">Contact</a>
+      <a href="guestbook.aspx">Guestbook</a>
+    </nav>
+  </div>
+</header>
+<div class="course-bar"><div class="container">310-2203 Back-End Software Development</div></div>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Personal Homepage</span>
+        <h1>สวัสดีครับ ผม<br>นฤชิต บุญยัง</h1>
+        <p class="lead">นักศึกษาชั้นปีที่ 2 สาขาวิศวกรรมคอมพิวเตอร์ คณะเทคโนโลยีดิจิทัล สถาบันเทคโนโลยีจิตรลดา สนใจด้าน Computer Networks ฝึกฝนการพัฒนาโปรแกรมเชิงระบบและการพัฒนาเว็บไซต์ควบคู่ไปด้วย</p>
+        <p id="greeting" class="eyebrow">กำลังโหลดคำทักทาย...</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="portfolio.html">ดูผลงานการบ้าน</a>
+          <a class="btn btn-ghost" href="cv.html">ดู CV / Resume</a>
+        </div>
+      </div>
+      <div class="photo">
+        <img src="images/profile.jpg" alt="ภาพประจำตัวของนักศึกษา">
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">About this site</span>
+        <h2>เว็บไซต์นี้มีอะไรบ้าง</h2>
+        <p class="muted">รวบรวมข้อมูลส่วนตัว ประวัติการศึกษา และผลงานระหว่างเรียนไว้ในที่เดียว ออกแบบให้เพิ่มผลงานใหม่ได้ง่าย</p>
+      </div>
+      <div class="entity-grid">
+        <div class="entity-card">
+          <div class="entity-card__head">
+            <span class="entity-card__table">about</span>
+            <span class="pill">01</span>
+          </div>
+          <div class="entity-card__body">
+            <h3>เกี่ยวกับผม</h3>
+            <p>แนะนำตัว ความสนใจด้านเทคนิค และเครื่องมือที่ใช้งานประจำ</p>
+            <div class="card-actions">
+              <a class="btn btn-ghost btn-sm" href="about.aspx">ไปที่หน้า About</a>
+            </div>
+          </div>
+        </div>
+        <div class="entity-card">
+          <div class="entity-card__head">
+            <span class="entity-card__table">cv</span>
+            <span class="pill">02</span>
+          </div>
+          <div class="entity-card__body">
+            <h3>CV / Resume</h3>
+            <p>การศึกษา ทักษะ ประสบการณ์ และช่องทางติดต่อแบบเป็นทางการ</p>
+            <div class="card-actions">
+              <a class="btn btn-ghost btn-sm" href="cv.html">ไปที่หน้า CV</a>
+            </div>
+          </div>
+        </div>
+        <div class="entity-card">
+          <div class="entity-card__head">
+            <span class="entity-card__table">portfolio</span>
+            <span class="pill">03</span>
+          </div>
+          <div class="entity-card__body">
+            <h3>ผลงานการบ้าน</h3>
+            <p>รวมการบ้านตลอดภาคการศึกษา พร้อมปุ่มดูรายละเอียดและดาวน์โหลด</p>
+            <div class="card-actions">
+              <a class="btn btn-ghost btn-sm" href="portfolio.html">ไปที่หน้า Portfolio</a>
+            </div>
+          </div>
+        </div>
+        <div class="entity-card">
+          <div class="entity-card__head">
+            <span class="entity-card__table">contact</span>
+            <span class="pill">04</span>
+          </div>
+          <div class="entity-card__body">
+            <h3>ติดต่อ</h3>
+            <p>ส่งข้อความหรือดูช่องทางติดต่ออื่น ๆ ได้จากหน้านี้</p>
+            <div class="card-actions">
+              <a class="btn btn-ghost btn-sm" href="contact.aspx">ไปที่หน้า Contact</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <br>6810301012 &middot; Deployed on GitHub Pages
+  </div>
+</footer>
+
+<script src="js/hw9.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HW7: ตั้งค่า IIS + เว็บแนะนำตัว | Portfolio</title>
+<meta name="description" content="รายละเอียดการบ้าน HW7 การตั้งค่า IIS และพัฒนาเว็บแนะนำตัวเบื้องต้น จุดเริ่มต้นของเว็บไซต์นี้">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html"><em>Tigger</em></a>
+    <nav class="nav" aria-label="เมนูหลัก">
+      <a href="index.html">Home</a>
+      <a href="about.aspx">About</a>
+      <a href="cv.html">CV</a>
+      <a href="portfolio.html" aria-current="page">Portfolio</a>
+      <a href="contact.aspx">Contact</a>
+      <a href="guestbook.aspx">Guestbook</a>
+    </nav>
+  </div>
+</header>
+<div class="course-bar"><div class="container">310-2203 Back-End Software Development</div></div>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <a class="back-link" href="portfolio.html">&larr; กลับไปหน้า Portfolio</a>
+
+      <span class="eyebrow">Table: hw07_iis_setup</span>
+      <h1>HW7: ตั้งค่า IIS และพัฒนาเว็บเบื้องต้น</h1>
+
+      <div class="detail-meta">
+        <span class="tag">IIS &middot; Port 8080</span>
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS</span>
+      </div>
+
+      <div class="detail-body">
+        <p>งานชิ้นนี้เป็นการฝึกตั้งค่าเว็บเซิร์ฟเวอร์ Internet Information Services (IIS) บนเครื่องส่วนตัวให้รันที่พอร์ต 8080 (<code>http://localhost:8080</code>) พร้อมพัฒนาเว็บหน้าเดียวสำหรับแนะนำตัว แสดงชื่อ รหัสนักศึกษา สาขา และสถาบัน โดยใช้ HTML ควบคู่กับไฟล์ CSS ภายนอกเพื่อจัดรูปแบบ</p>
+
+        <h2>ตัวอย่างโค้ดจากเว็บหน้าแรกของ HW7</h2>
+        <pre style="background:#1B2430; color:#E1E5EA; padding:16px; border-radius:8px; overflow-x:auto; font-family:'JetBrains Mono', monospace; font-size:.82rem;"><code>&lt;div class="profile-card"&gt;
+  &lt;img src="profile.jpg" alt="Profile Picture" class="profile-image"&gt;
+  &lt;h1&gt;My Profile&lt;/h1&gt;
+  &lt;p class="subtitle"&gt;เว็บไซต์แนะนำตัวสำหรับการบ้าน IIS&lt;/p&gt;
+  &lt;div class="info-box"&gt;
+    &lt;p&gt;&lt;strong&gt;ชื่อ:&lt;/strong&gt; นฤชิต บุญยัง&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;รหัสนักศึกษา:&lt;/strong&gt; 6810301012&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;สาขา:&lt;/strong&gt; วิศวกรรมคอมพิวเตอร์&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;สถาบัน:&lt;/strong&gt; สถาบันเทคโนโลยีจิตรลดา&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <p>เว็บหน้าเดียวนี้เองที่กลายมาเป็นจุดตั้งต้นของเว็บไซต์ส่วนตัวฉบับเต็มใน HW8 — จากการ์ดโปรไฟล์หนึ่งใบ ขยายเป็นเว็บไซต์หลายหน้าที่มี Home, About, CV, Portfolio และ Contact ครบถ้วน</p>
+
+        <h2>สิ่งที่ได้เรียนรู้</h2>
+        <ul>
+          <li>การติดตั้งและตั้งค่า IIS ให้รันเว็บไซต์ Static บนพอร์ตที่กำหนด</li>
+          <li>โครงสร้างพื้นฐานของ HTML5 และการเชื่อมไฟล์ CSS ภายนอก</li>
+          <li>การจัดวางข้อมูลส่วนตัวให้อ่านง่ายด้วย Card Layout และเงา (Box Shadow)</li>
+        </ul>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="files/hw07-iis-setup.pdf" download>ดาวน์โหลดเอกสาร HW7 (PDF)</a>
+          <a class="btn btn-ghost" href="portfolio.html">ดูผลงานอื่น ๆ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <br>6810301012 &middot; Deployed on GitHub Pages
+  </div>
+</footer>
+
+<script src="js/download.js"></script>
+</body>
+</html>

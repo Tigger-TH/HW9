@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HW6: UML Diagrams | Portfolio</title>
+<meta name="description" content="รายละเอียดการบ้าน HW6 การออกแบบ UML Diagrams สำหรับระบบขายตั๋วภาพยนตร์/คอนเสิร์ต">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html"><em>Tigger</em></a>
+    <nav class="nav" aria-label="เมนูหลัก">
+      <a href="index.html">Home</a>
+      <a href="about.aspx">About</a>
+      <a href="cv.html">CV</a>
+      <a href="portfolio.html" aria-current="page">Portfolio</a>
+      <a href="contact.aspx">Contact</a>
+      <a href="guestbook.aspx">Guestbook</a>
+    </nav>
+  </div>
+</header>
+<div class="course-bar"><div class="container">310-2203 Back-End Software Development</div></div>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <a class="back-link" href="portfolio.html">&larr; กลับไปหน้า Portfolio</a>
+
+      <span class="eyebrow">Table: hw06_uml_diagrams</span>
+      <h1>HW6: UML Diagrams — Movie / Concert Ticket Booking System</h1>
+
+      <div class="detail-meta">
+        <span class="tag">Use Case</span>
+        <span class="tag">Class Diagram</span>
+        <span class="tag">Sequence</span>
+        <span class="tag">Activity</span>
+        <span class="tag">State Machine</span>
+        <span class="tag">Component</span>
+      </div>
+
+      <div class="detail-body">
+        <p>การบ้านชิ้นนี้ออกแบบแผนภาพ UML 6 รูปแบบ สำหรับระบบขายตั๋วภาพยนตร์/คอนเสิร์ต (Movie / Concert Ticket Booking System) เพื่อฝึกมองระบบเดียวกันจากหลายมุมมอง ทั้งเชิงพฤติกรรมและเชิงโครงสร้าง</p>
+
+        <img src="images/hw06-usecase-diagram.png" alt="Use Case Diagram แสดงความสัมพันธ์ระหว่าง Customer, Staff และ Payment Gateway">
+        <p class="muted" style="margin-top:-8px;"><strong>Use Case Diagram</strong> — แสดงการปฏิสัมพันธ์ระหว่าง Actor กับระบบ โดย Customer สามารถค้นหารอบฉาย เลือกที่นั่ง จองตั๋ว และยกเลิกการจองได้ ส่วน Staff จัดการรอบฉาย และ Payment Gateway ทำหน้าที่ยืนยันการชำระเงิน</p>
+
+        <img src="images/hw06-class-diagram.png" alt="Class Diagram แสดงคลาส Movie, Showtime, Seat, Customer, Booking และ Payment">
+        <p class="muted" style="margin-top:-8px;"><strong>Class Diagram</strong> — แสดงโครงสร้างของระบบในรูปแบบคลาส พร้อมแอตทริบิวต์ เมธอด และความสัมพันธ์ระหว่างคลาส Movie, Showtime, Seat, Customer, Booking และ Payment</p>
+
+        <h2>แผนภาพอื่น ๆ ในไฟล์ฉบับเต็ม</h2>
+        <ul>
+          <li><strong>Sequence Diagram</strong> — ลำดับการส่งข้อความตั้งแต่ลูกค้าเลือกที่นั่งจนถึงการชำระเงินผ่าน Payment Gateway</li>
+          <li><strong>Activity Diagram</strong> — ขั้นตอนตั้งแต่ค้นหาภาพยนตร์ เลือกที่นั่ง ชำระเงิน จนถึงยืนยันการจอง</li>
+          <li><strong>State Machine Diagram</strong> — วงจรสถานะของที่นั่ง ตั้งแต่ Available, Locked, Booked จนถึง Cancelled</li>
+          <li><strong>Component Diagram</strong> — โครงสร้างสถาปัตยกรรมของระบบขายตั๋วในภาพรวม</li>
+        </ul>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="files/hw06-uml-diagrams.pdf" download>ดาวน์โหลดไฟล์ฉบับเต็ม (PDF)</a>
+          <a class="btn btn-ghost" href="portfolio.html">ดูผลงานอื่น ๆ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <br>6810301012 &middot; Deployed on GitHub Pages
+  </div>
+</footer>
+
+<script src="js/download.js"></script>
+</body>
+</html>
