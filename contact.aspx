@@ -40,12 +40,36 @@
 
             if (name.Length > 0 && email.Length > 0 && message.Length > 0)
             {
-                statusType = "success";
-                statusText = "ขอบคุณครับคุณ " + Server.HtmlEncode(name) +
-                             " เราได้รับข้อความของคุณแล้ว จะติดต่อกลับไปที่ " + Server.HtmlEncode(email) +
-                             " เร็ว ๆ นี้ (บันทึกเวลาที่ส่ง: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + ")";
+                // Post/Redirect/Get: redirect กลับไปแบบ GET กันข้อมูลซ้ำเวลากด F5
+                // จับเวลาที่ส่งจริงไว้ตรงนี้ แล้วส่งผ่าน query string ไป
+                // เพื่อไม่ให้เวลาขยับเปลี่ยนทุกครั้งที่กด F5 โหลดหน้าซ้ำ
+                string submittedAt = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                Response.Redirect("contact.aspx?status=success"
+                    + "&name=" + Server.UrlEncode(name)
+                    + "&email=" + Server.UrlEncode(email)
+                    + "&time=" + Server.UrlEncode(submittedAt));
+                return;
             }
             else
+            {
+                Response.Redirect("contact.aspx?status=error");
+                return;
+            }
+        }
+        else if (Request.HttpMethod != "POST")
+        {
+            string status = Request.QueryString["status"];
+            if (status == "success")
+            {
+                statusType = "success";
+                string qName = Server.HtmlEncode(Request.QueryString["name"] ?? "");
+                string qEmail = Server.HtmlEncode(Request.QueryString["email"] ?? "");
+                string qTime = Server.HtmlEncode(Request.QueryString["time"] ?? DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+                statusText = "ขอบคุณครับคุณ " + qName +
+                             " เราได้รับข้อความของคุณแล้ว จะติดต่อกลับไปที่ " + qEmail +
+                             " เร็ว ๆ นี้ (บันทึกเวลาที่ส่ง: " + qTime + ")";
+            }
+            else if (status == "error")
             {
                 statusType = "error";
                 statusText = "กรุณากรอกข้อมูลให้ครบทุกช่องก่อนส่งฟอร์มนะครับ";

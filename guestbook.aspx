@@ -77,13 +77,14 @@
                     list.Insert(0, newEntry);
                     Application.UnLock();
 
-                    statusType = "success";
-                    statusText = "ขอบคุณสำหรับข้อความของคุณ " + Server.HtmlEncode(name) + " ครับ/ค่ะ!";
+                    // Post/Redirect/Get: redirect กลับไปแบบ GET กันข้อมูลซ้ำเวลากด F5
+                    Response.Redirect("guestbook.aspx?status=success&name=" + Server.UrlEncode(name));
+                    return;
                 }
                 else
                 {
-                    statusType = "error";
-                    statusText = "กรุณากรอกทั้งชื่อและข้อความก่อนส่งนะครับ";
+                    Response.Redirect("guestbook.aspx?status=error");
+                    return;
                 }
             }
             // ตรวจสอบการ submit ฟอร์มลบข้อความ (ปุ่ม 🗑️ ลบ ในแต่ละรายการ)
@@ -96,6 +97,28 @@
                 list.RemoveAll(item => item[0] == deleteId);
                 Application.UnLock();
 
+                // Post/Redirect/Get: redirect กลับไปแบบ GET กันการลบซ้ำเวลากด F5
+                Response.Redirect("guestbook.aspx?status=deleted");
+                return;
+            }
+        }
+        else
+        {
+            // GET request: เช็คว่า redirect มาจากการ submit/delete สำเร็จหรือไม่
+            string status = Request.QueryString["status"];
+            if (status == "success")
+            {
+                statusType = "success";
+                string qName = Server.HtmlEncode(Request.QueryString["name"] ?? "");
+                statusText = "ขอบคุณสำหรับข้อความของคุณ " + qName + " ครับ/ค่ะ!";
+            }
+            else if (status == "error")
+            {
+                statusType = "error";
+                statusText = "กรุณากรอกทั้งชื่อและข้อความก่อนส่งนะครับ";
+            }
+            else if (status == "deleted")
+            {
                 statusType = "success";
                 statusText = "ลบข้อความเรียบร้อยแล้ว";
             }
