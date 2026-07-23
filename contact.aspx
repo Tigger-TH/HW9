@@ -100,12 +100,6 @@
       <div class="contact-info">
         <div class="item">
           <div>
-            <strong>Email</strong>
-            6810301012@cdti.ac.th
-          </div>
-        </div>
-        <div class="item">
-          <div>
             <strong>GitHub</strong>
             <a href="https://github.com/Tigger-TH" target="_blank" rel="noopener">github.com/Tigger-TH</a>
           </div>
