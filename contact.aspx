@@ -112,7 +112,7 @@
 
 <footer class="site-footer">
   <div class="container">
-    6810301012 &middot; Deployed on GitHub Pages
+    6810301012 &middot; Homework 10
   </div>
 </footer>
 
