@@ -21,6 +21,21 @@
     string statusType = "";
     string statusText = "";
 
+    // อ่าน IP จริงของผู้เข้าชม แม้จะมี Cloudflare พร็อกซี่อยู่หน้าเว็บก็ตาม
+    string GetClientIp()
+    {
+        string cfIp = Request.Headers["CF-Connecting-IP"];
+        if (!string.IsNullOrEmpty(cfIp)) return cfIp;
+
+        string forwardedFor = Request.Headers["X-Forwarded-For"];
+        if (!string.IsNullOrEmpty(forwardedFor))
+        {
+            return forwardedFor.Split(',')[0].Trim();
+        }
+
+        return Request.UserHostAddress;
+    }
+
     // ===== เก็บข้อความไว้ใน Application State (ใช้ร่วมกันทุกคนที่เข้าเว็บ ไม่ต้องใช้ Database) =====
     List<string[]> GetMessages()
     {
@@ -113,7 +128,7 @@
       <p class="lead">หน้านี้พัฒนาด้วย ASP.NET (C#) แบบ Dynamic ใช้ Application State เก็บข้อความของผู้เยี่ยมชมทุกคนไว้บนเซิร์ฟเวอร์ ไม่ต้องใช้ฐานข้อมูล</p>
       <p class="server-info-line">
         🕒 เวลาปัจจุบันของเซิร์ฟเวอร์: <strong><%= DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") %></strong>
-        &nbsp;|&nbsp; 🌐 IP ของคุณ: <strong><%= Request.UserHostAddress %></strong>
+        &nbsp;|&nbsp; 🌐 IP ของคุณ: <strong><%= GetClientIp() %></strong>
       </p>
     </div>
   </section>

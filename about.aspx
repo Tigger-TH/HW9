@@ -18,6 +18,24 @@
         if (hour < 18) return "สวัสดีตอนบ่ายครับ 😀";
         return "สวัสดีตอนเย็น/ค่ำครับ 🫩";
     }
+
+    // อ่าน IP จริงของผู้เข้าชม แม้จะมี Cloudflare พร็อกซี่อยู่หน้าเว็บก็ตาม
+    string GetClientIp()
+    {
+        // 1) Cloudflare แนบ IP จริงมาใน header นี้เสมอเมื่อพร็อกซี่ผ่าน Cloudflare
+        string cfIp = Request.Headers["CF-Connecting-IP"];
+        if (!string.IsNullOrEmpty(cfIp)) return cfIp;
+
+        // 2) proxy/load balancer ทั่วไปมักแนบ IP มาใน header นี้ (อาจมีหลาย IP คั่นด้วย comma)
+        string forwardedFor = Request.Headers["X-Forwarded-For"];
+        if (!string.IsNullOrEmpty(forwardedFor))
+        {
+            return forwardedFor.Split(',')[0].Trim();
+        }
+
+        // 3) ถ้าไม่มี proxy เลย (เช่นทดสอบตรงจาก localhost/public-ip) ใช้ค่าปกติ
+        return Request.UserHostAddress;
+    }
 </script>
 
 <body>
@@ -46,7 +64,7 @@
       <p class="server-info-line">
         <%= GetGreeting() %> ขณะนี้เวลา <strong><%= DateTime.Now.ToString("HH:mm:ss") %></strong>
         วันที่ <strong><%= DateTime.Now.ToString("dd/MM/yyyy") %></strong> —
-        คุณเข้าชมจาก IP <strong><%= Request.UserHostAddress %></strong>
+        คุณเข้าชมจาก IP <strong><%= GetClientIp() %></strong>
         <!-- <span class="hint">(ข้อความนี้คำนวณแบบ Dynamic ด้วย ASP.NET ทุกครั้งที่โหลดหน้า)</span> -->
       </p>
     </div>

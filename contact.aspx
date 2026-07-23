@@ -14,6 +14,21 @@
     string statusType = "";
     string statusText = "";
 
+    // อ่าน IP จริงของผู้เข้าชม แม้จะมี Cloudflare พร็อกซี่อยู่หน้าเว็บก็ตาม
+    string GetClientIp()
+    {
+        string cfIp = Request.Headers["CF-Connecting-IP"];
+        if (!string.IsNullOrEmpty(cfIp)) return cfIp;
+
+        string forwardedFor = Request.Headers["X-Forwarded-For"];
+        if (!string.IsNullOrEmpty(forwardedFor))
+        {
+            return forwardedFor.Split(',')[0].Trim();
+        }
+
+        return Request.UserHostAddress;
+    }
+
     void Page_Load(object sender, EventArgs e)
     {
         // Form >> ASPX : ตรวจสอบว่ามีการ submit ฟอร์มติดต่อมาหรือไม่
@@ -63,7 +78,7 @@
       <h1>ติดต่อผม</h1>
       <p class="lead">มีคำถามเกี่ยวกับผลงาน อยากพูดคุยเรื่องโปรเจกต์ หรือแค่อยากทักทาย ส่งข้อความมาได้ที่ฟอร์มด้านล่าง</p>
       <p class="server-info-line">
-        🌐 ระบบตรวจพบว่าคุณกำลังเข้าชมจาก IP: <strong><%= Request.UserHostAddress %></strong>
+        🌐 ระบบตรวจพบว่าคุณกำลังเข้าชมจาก IP: <strong><%= GetClientIp() %></strong>
         &nbsp;|&nbsp; 🕒 <%= DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") %>
       </p>
     </div>

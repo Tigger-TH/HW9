@@ -78,11 +78,11 @@ function showTimeGreeting(elementId) {
     var greeting = "";
 
     if (hour < 12) {
-        greeting = "สวัสดืครับ 😎 ยินดีต้อนรับสู่เว็บไซต์ของผม";
+        greeting = "สวัสดีครับ 😎 ยินดีต้อนรับสู่เว็บไซต์ของผม";
     } else if (hour < 18) {
-        greeting = "สวัสดืครับ 😀 ยินดีต้อนรับสู่เว็บไซต์ของผม";
+        greeting = "สวัสดีครับ 😀 ยินดีต้อนรับสู่เว็บไซต์ของผม";
     } else {
-        greeting = "สวัสดืครับ 🫩 ยินดีต้อนรับสู่เว็บไซต์ของผม";
+        greeting = "สวัสดีครับ 🫩 ยินดีต้อนรับสู่เว็บไซต์ของผม";
     }
 
     el.textContent = greeting;
