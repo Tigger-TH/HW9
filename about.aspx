@@ -14,9 +14,9 @@
     string GetGreeting()
     {
         int hour = DateTime.Now.Hour;
-        if (hour < 12) return "สวัสดีตอนเช้าครับ ☀️";
-        if (hour < 18) return "สวัสดีตอนบ่ายครับ 🌤️";
-        return "สวัสดีตอนเย็น/ค่ำครับ 🌙";
+        if (hour < 12) return "สวัสดีตอนเช้าครับ 😎";
+        if (hour < 18) return "สวัสดีตอนบ่ายครับ 😀";
+        return "สวัสดีตอนเย็น/ค่ำครับ 🫩";
     }
 </script>
 
@@ -47,7 +47,7 @@
         <%= GetGreeting() %> ขณะนี้เวลา <strong><%= DateTime.Now.ToString("HH:mm:ss") %></strong>
         วันที่ <strong><%= DateTime.Now.ToString("dd/MM/yyyy") %></strong> —
         คุณเข้าชมจาก IP <strong><%= Request.UserHostAddress %></strong>
-        <span class="hint">(ข้อความนี้คำนวณแบบ Dynamic ด้วย ASP.NET ทุกครั้งที่โหลดหน้า)</span>
+        <!-- <span class="hint">(ข้อความนี้คำนวณแบบ Dynamic ด้วย ASP.NET ทุกครั้งที่โหลดหน้า)</span> -->
       </p>
     </div>
   </section>

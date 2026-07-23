@@ -12,64 +12,77 @@
 </head>
 
 <script runat="server">
-    // ===== โครงสร้างข้อมูล 1 ข้อความในสมุดเยี่ยมชม =====
-    public class GuestEntry
-    {
-        public string Name;
-        public string Message;
-        public string PostedTime;
-
-        public GuestEntry(string name, string message)
-        {
-            Name = name;
-            Message = message;
-            PostedTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm") + " น.";
-        }
-    }
+    // ===== เก็บข้อความแต่ละรายการเป็น string[4]: {id, name, message, postedTime} =====
+    // (ตั้งใจไม่ใช้ custom class เพราะ ASP.NET จะคอมไพล์คลาสที่ประกาศใน .aspx ใหม่
+    //  ทุกครั้งที่ไฟล์ถูกแก้ไข ทำให้ object เก่าที่ค้างอยู่ใน Application State
+    //  กลายเป็นคนละ Type กับคลาสเวอร์ชันใหม่ และ cast ไม่ได้ -> InvalidCastException
+    //  string[] เป็น Type มาตรฐานของ .NET จึงไม่มีปัญหานี้)
 
     string statusType = "";
     string statusText = "";
 
     // ===== เก็บข้อความไว้ใน Application State (ใช้ร่วมกันทุกคนที่เข้าเว็บ ไม่ต้องใช้ Database) =====
-    List<GuestEntry> GetMessages()
+    List<string[]> GetMessages()
     {
         if (Application["GuestbookMessages"] == null)
         {
             Application.Lock();
             if (Application["GuestbookMessages"] == null)
             {
-                List<GuestEntry> initial = new List<GuestEntry>();
-                initial.Add(new GuestEntry("คุณ A", "เว็บไซต์สวยมากครับ ออกแบบเป็นระเบียบและดูเป็นมืออาชีพดี"));
-                initial.Add(new GuestEntry("คุณ B", "ขอชื่นชมผลงาน Portfolio ที่รวบรวมไว้ครบถ้วนมากค่ะ"));
-                Application["GuestbookMessages"] = initial;
+                Application["GuestbookMessages"] = new List<string[]>();
             }
             Application.UnLock();
         }
-        return (List<GuestEntry>)Application["GuestbookMessages"];
+        return (List<string[]>)Application["GuestbookMessages"];
     }
 
     void Page_Load(object sender, EventArgs e)
     {
-        // Form >> ASPX : ตรวจสอบการ submit ฟอร์ม
-        if (Request.HttpMethod == "POST" && Request.Form["submitGuestbook"] != null)
+        if (Request.HttpMethod == "POST")
         {
-            string name = (Request.Form["gbName"] ?? "").Trim();
-            string message = (Request.Form["gbMessage"] ?? "").Trim();
-
-            if (name.Length > 0 && message.Length > 0)
+            // Form >> ASPX : ตรวจสอบการ submit ฟอร์มฝากข้อความ
+            if (Request.Form["submitGuestbook"] != null)
             {
-                List<GuestEntry> list = GetMessages();
+                string name = (Request.Form["gbName"] ?? "").Trim();
+                string message = (Request.Form["gbMessage"] ?? "").Trim();
+
+                if (name.Length > 0 && message.Length > 0)
+                {
+                    string newId = Guid.NewGuid().ToString("N");
+                    string postedTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm") + " น.";
+                    string[] newEntry = new string[] {
+                        newId,
+                        Server.HtmlEncode(name),
+                        Server.HtmlEncode(message),
+                        postedTime
+                    };
+
+                    List<string[]> list = GetMessages();
+                    Application.Lock();
+                    list.Insert(0, newEntry);
+                    Application.UnLock();
+
+                    statusType = "success";
+                    statusText = "ขอบคุณสำหรับข้อความของคุณ " + Server.HtmlEncode(name) + " ครับ/ค่ะ!";
+                }
+                else
+                {
+                    statusType = "error";
+                    statusText = "กรุณากรอกทั้งชื่อและข้อความก่อนส่งนะครับ";
+                }
+            }
+            // ตรวจสอบการ submit ฟอร์มลบข้อความ (ปุ่ม 🗑️ ลบ ในแต่ละรายการ)
+            else if (Request.Form["deleteId"] != null)
+            {
+                string deleteId = Request.Form["deleteId"];
+                List<string[]> list = GetMessages();
+
                 Application.Lock();
-                list.Insert(0, new GuestEntry(Server.HtmlEncode(name), Server.HtmlEncode(message)));
+                list.RemoveAll(item => item[0] == deleteId);
                 Application.UnLock();
 
                 statusType = "success";
-                statusText = "ขอบคุณสำหรับข้อความของคุณ " + Server.HtmlEncode(name) + " ครับ/ค่ะ!";
-            }
-            else
-            {
-                statusType = "error";
-                statusText = "กรุณากรอกทั้งชื่อและข้อความก่อนส่งนะครับ";
+                statusText = "ลบข้อความเรียบร้อยแล้ว";
             }
         }
     }
@@ -133,14 +146,27 @@
     <div class="container">
       <h2>ข้อความจากผู้เยี่ยมชม (<%= GetMessages().Count %>)</h2>
       <div class="gb-list">
-        <% foreach (GuestEntry entry in GetMessages()) { %>
+        <% foreach (string[] entry in GetMessages()) {
+             string entryId = entry[0];
+             string entryName = entry[1];
+             string entryMessage = entry[2];
+             string entryTime = entry[3];
+        %>
           <div class="gb-entry">
             <div class="gb-entry__head">
-              <span class="gb-entry__name">👤 <%= entry.Name %></span>
-              <span class="gb-entry__time"><%= entry.PostedTime %></span>
+              <span class="gb-entry__name">👤 <%= entryName %></span>
+              <span class="gb-entry__time"><%= entryTime %></span>
             </div>
-            <p class="gb-entry__message"><%= entry.Message %></p>
+            <p class="gb-entry__message"><%= entryMessage %></p>
+            <form method="post" action="guestbook.aspx" class="gb-entry__delete-form"
+                  onsubmit="return confirm('ต้องการลบข้อความนี้ใช่หรือไม่?');">
+              <input type="hidden" name="deleteId" value="<%= entryId %>">
+              <button type="submit" class="btn btn-ghost btn-sm">🗑️ ลบ</button>
+            </form>
           </div>
+        <% } %>
+        <% if (GetMessages().Count == 0) { %>
+          <p class="hint">ยังไม่มีข้อความในสมุดเยี่ยมชม เป็นคนแรกที่ฝากข้อความสิ!</p>
         <% } %>
       </div>
     </div>
